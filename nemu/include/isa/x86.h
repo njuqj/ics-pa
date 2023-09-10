@@ -18,10 +18,12 @@
  */
 
 typedef struct {
-  union {
-	uint32_t _32;
-	uint16_t _16;
-	uint8_t _8[2];
+  struct {
+	union{
+		uint32_t _32;
+		uint16_t _16;
+		uint8_t _8[2];
+	};
   } gpr[8];
 
   /* Do NOT change the order of the GPRs' definitions. */
