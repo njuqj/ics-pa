@@ -2,6 +2,7 @@
 #include "expr.h"
 #include "watchpoint.h"
 
+#include <memory/paddr.h>
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -140,11 +141,11 @@ static int cmd_info(char *args)
 static int cmd_x(char *args)
 {
   uint32_t lenth;
-  uint8_t *add;
+  uint32_t add;
   // printf("%s\n", args);
-  sscanf(args, "%u %p", &lenth, &add);
-  uint8_t con = *add;
-  printf("%u\n", con);
+  sscanf(args, "%u %x", &lenth, &add);
+  uint8_t *c = guest_to_host(add);
+  printf("%x\n", *c);
   /*int i = 0;
   for (; i + 4 < lenth; i += 4)
   {
