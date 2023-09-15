@@ -93,9 +93,16 @@ static int cmd_help(char *args)
 
 static int cmd_si(char *args)
 {
-  uint64_t n;
-  sscanf(args, "%ld", &n);
-  cpu_exec(n);
+  if (args == NULL)
+  {
+    cpu_exec(1);
+  }
+  else
+  {
+    uint64_t n;
+    sscanf(args, "%ld", &n);
+    cpu_exec(n);
+  }
   return 0;
 }
 
