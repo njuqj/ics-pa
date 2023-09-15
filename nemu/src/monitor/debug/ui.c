@@ -111,7 +111,15 @@ static int cmd_si(char *args)
 
 static int cmd_info(char *args)
 {
+  switch (args[0])
+  {
+  case 'r':
+    printf("register");
+    break;
 
+  default:
+    break;
+  }
   return 0;
 }
 void ui_mainloop()
