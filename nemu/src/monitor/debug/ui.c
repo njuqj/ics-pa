@@ -151,6 +151,7 @@ static int cmd_x(char *args)
     if (!((i + 1) % 4))
       printf(" ");
   }
+  printf("\n");
   return 0;
 }
 
