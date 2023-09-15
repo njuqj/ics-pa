@@ -138,10 +138,11 @@ static int cmd_info(char *args)
 
 static int cmd_x(char *args)
 {
-  uint32_t lenth;
-  uint8_t *add;
-  sscanf(args, "%u %p", &lenth, &add);
-  printf("%x\n", *add);
+  // uint32_t lenth;
+  // uint8_t *add;
+  printf("%s\n", args);
+  // sscanf(args, "%u %p", &lenth, &add);
+  // printf("%x\n", *add);
   /*int i = 0;
   for (; i + 4 < lenth; i += 4)
   {
