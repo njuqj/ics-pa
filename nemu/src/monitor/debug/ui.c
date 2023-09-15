@@ -115,6 +115,13 @@ static int cmd_info(char *args)
   {
   case 'r':
     printf("EAX: %08x\n", cpu.eax);
+    printf("ECX: %08x\n", cpu.ecx);
+    printf("EDX: %08x\n", cpu.edx);
+    printf("EBX: %08x\n", cpu.ebx);
+    printf("ESP: %08x\n", cpu.esp);
+    printf("EBP: %08x\n", cpu.ebp);
+    printf("ESI: %08x\n", cpu.esi);
+    printf("EDI: %08x\n", cpu.edi);
     break;
 
   default:
