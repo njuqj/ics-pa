@@ -123,6 +123,9 @@ static int cmd_info(char *args)
     printf("ESI: 0x%08x\n", cpu.esi);
     printf("EDI: 0x%08x\n", cpu.edi);
     break;
+  case 'w':
+    printf("watchpoint\n");
+    break;
 
   default:
     break;
