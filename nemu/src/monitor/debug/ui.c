@@ -45,6 +45,8 @@ static int cmd_help(char *args);
 
 static int cmd_si(char *args);
 
+static int cmd_info(char *args);
+
 static struct
 {
   char *name;
@@ -55,6 +57,7 @@ static struct
     {"c", "Continue the execution of the program", cmd_c},
     {"q", "Exit NEMU", cmd_q},
     {"si", "Let the program step through N instructions and then pause execution, when N is not given, the default is 1 ", cmd_si},
+    {"info", "info r: Print the register status\ninfo w: Print the watchpoint information", cmd_info}
 
     /* TODO: Add more commands */
 
@@ -106,6 +109,11 @@ static int cmd_si(char *args)
   return 0;
 }
 
+static int cmd_info(char *args)
+{
+
+  return 0;
+}
 void ui_mainloop()
 {
   if (is_batch_mode())
