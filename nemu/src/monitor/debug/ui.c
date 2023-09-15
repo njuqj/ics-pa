@@ -144,7 +144,8 @@ static int cmd_x(char *args)
   // printf("%s\n", args);
   sscanf(args, "%u %p", &lenth, &add);
   uint8_t con = *add;
-  printf("%x\n", con);
+  con++;
+  // printf("%x\n", con);
   /*int i = 0;
   for (; i + 4 < lenth; i += 4)
   {
