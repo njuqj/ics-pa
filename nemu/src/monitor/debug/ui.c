@@ -145,15 +145,12 @@ static int cmd_x(char *args)
   // printf("%s\n", args);
   sscanf(args, "%u %x", &length, &add);
   uint8_t *c = guest_to_host(add);
-  printf("%x", *c);
-  printf("%x", *(c + 1));
-  /*for (int i = 0; i < length; i++)
+  for (int i = 0; i < length; i++)
   {
     printf("%x", *(c + i));
-    if (!(i + 1) % 4)
+    if (!((i + 1) % 4))
       printf(" ");
-    i++;
-  }*/
+  }
   return 0;
 }
 
