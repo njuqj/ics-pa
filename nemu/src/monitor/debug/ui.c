@@ -47,6 +47,8 @@ static int cmd_si(char *args);
 
 static int cmd_info(char *args);
 
+static int cmd_x(char *args);
+
 static struct
 {
   char *name;
@@ -57,7 +59,8 @@ static struct
     {"c", "Continue the execution of the program", cmd_c},
     {"q", "Exit NEMU", cmd_q},
     {"si", "Let the program step through N instructions and then pause execution, when N is not given, the default is 1 ", cmd_si},
-    {"info", "info r: Print the register status\n       info w: Print the watchpoint information", cmd_info}
+    {"info", "info r: Print the register status\n       info w: Print the watchpoint information", cmd_info},
+    {"x", "Scan memory", cmd_x}
 
     /* TODO: Add more commands */
 
@@ -132,6 +135,25 @@ static int cmd_info(char *args)
   }
   return 0;
 }
+
+static int cmd_x(char *args)
+{
+  uint32_t lenth;
+  uint32_t add;
+  sscanf(args, "%u %x", &lenth, &add);
+  printf("%x\n", add);
+  /*int i = 0;
+  for (; i + 4 < lenth; i += 4)
+  {
+    printf("%x ", *add);
+  }
+  for (; i < lenth; i++)
+  {
+    printf("")
+  }*/
+  return 0;
+}
+
 void ui_mainloop()
 {
   if (is_batch_mode())
