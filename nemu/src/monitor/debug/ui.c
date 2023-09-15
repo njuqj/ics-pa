@@ -114,7 +114,7 @@ static int cmd_info(char *args)
   switch (args[0])
   {
   case 'r':
-    printf("register");
+    printf("EAX: %x", cpu.eax);
     break;
 
   default:
