@@ -140,14 +140,18 @@ static int cmd_info(char *args)
 
 static int cmd_x(char *args)
 {
-  uint32_t lenth;
+  uint32_t length;
   uint32_t add;
   // printf("%s\n", args);
-  sscanf(args, "%u %x", &lenth, &add);
+  sscanf(args, "%u %x", &length, &add);
   uint8_t *c = guest_to_host(add);
-  printf("%x\n", *c);
-  c++;
-  printf("%x\n", *c);
+  for (int i = 0; i < length; i++)
+  {
+    printf("%x", *(c + i));
+    if (!(i + 1) % 4)
+      printf(" ");
+    i++;
+  }
   return 0;
 }
 
