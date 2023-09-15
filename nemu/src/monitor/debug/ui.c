@@ -118,7 +118,6 @@ static int cmd_info(char *args)
   switch (args[0])
   {
   case 'r':
-    isa_reg_display();
     printf("EAX: 0x%08x\n", cpu.eax);
     printf("ECX: 0x%08x\n", cpu.ecx);
     printf("EDX: 0x%08x\n", cpu.edx);
