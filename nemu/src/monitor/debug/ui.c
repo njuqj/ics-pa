@@ -143,7 +143,7 @@ static int cmd_x(char *args)
   uint32_t length;
   uint32_t addr;
   // printf("%s\n", args);
-  if (!sscanf(args, "%u %x", &length, &addr))
+  if (sscanf(args, "%u %x", &length, &addr) != 2)
   {
     printf("invalid input!\n");
     return 0;
