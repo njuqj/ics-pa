@@ -143,7 +143,11 @@ static int cmd_x(char *args)
   uint32_t length;
   uint32_t addr;
   // printf("%s\n", args);
-  sscanf(args, "%u %x", &length, &addr);
+  if (!sscanf(args, "%u %x", &length, &addr))
+  {
+    printf("invalid input!\n");
+    return 0;
+  }
   uint8_t *c = guest_to_host(addr);
   printf("0x%x: ", addr);
   for (int i = 0; i < length; i++)
