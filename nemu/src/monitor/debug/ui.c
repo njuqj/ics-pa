@@ -118,6 +118,7 @@ static int cmd_info(char *args)
   switch (args[0])
   {
   case 'r':
+    isa_reg_display();
     printf("EAX: 0x%08x\n", cpu.eax);
     printf("ECX: 0x%08x\n", cpu.ecx);
     printf("EDX: 0x%08x\n", cpu.edx);
@@ -128,7 +129,7 @@ static int cmd_info(char *args)
     printf("EDI: 0x%08x\n", cpu.edi);
     break;
   case 'w':
-    printf("watchpoint\n");
+    printf("watchpoint\n"); // 待修改
     break;
 
   default:
@@ -143,7 +144,7 @@ static int cmd_x(char *args)
   uint32_t length;
   uint32_t addr;
   // printf("%s\n", args);
-  if (sscanf(args, "%u %x", &length, &addr) != 2)
+  if (sscanf(args, "%u %x", &length, &addr) != 2) // 如果输入不合法或者只有一个输入，输出提示信息然后返回
   {
     printf("invalid input!\n");
     return 0;
