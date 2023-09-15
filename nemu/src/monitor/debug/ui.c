@@ -145,13 +145,13 @@ static int cmd_x(char *args)
   // printf("%s\n", args);
   sscanf(args, "%u %x", &length, &addr);
   uint8_t *c = guest_to_host(addr);
-  printf("\n%x: ", addr);
+  printf("0x%x: ", addr);
   for (int i = 0; i < length; i++)
   {
     printf("%02x", *(c + i));
     if (!((i + 1) % 4))
     {
-      printf("\n%x: ", addr + i + 1);
+      printf("\n0x%x: ", addr + i + 1);
     }
   }
   printf("\n");
