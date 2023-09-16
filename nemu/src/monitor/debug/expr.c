@@ -33,7 +33,7 @@ static struct rule
     {"/", '/'},         // division
     {"\\(", '('},       // left-half bracket
     {"\\)", ')'},       // right-half bracket
-    {"[0-9]*", TK_NUM}, // nums
+    {"[0-9]+", TK_NUM}, // nums
 
 };
 
