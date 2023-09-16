@@ -120,6 +120,7 @@ static bool make_token(char *e)
           nr_token++;
           break;
         default:
+          assert(0);
           // TODO();
         }
 
@@ -168,7 +169,7 @@ static bool check_parenthess(int p, int q)
   }
 }
 
-/*static word_t eval(int p, int q)
+static uint32_t eval(int p, int q)
 {
   if (p > q)
   {
@@ -179,7 +180,7 @@ static bool check_parenthess(int p, int q)
   {
     if (tokens[p].type == TK_NUM)
     {
-      word_t res = 0;
+      uint32_t res = 0;
       sscanf("%u", tokens[p].str, res);
       return res;
     }
@@ -189,7 +190,73 @@ static bool check_parenthess(int p, int q)
       return 0;
     }
   }
-}*/
+  else if (check_parenthess(p, q) == true)
+  {
+    return eval(p + 1, q - 1);
+  }
+  else
+  {
+    if (q == p + 1)
+    {
+      printf("Error!\n");
+      return 0;
+    }
+    int op = 0;
+    int op_type = 0;
+    int cur_op = p + 1;
+    while (cur_op < q)
+    {
+      switch (tokens[cur_op].type)
+      {
+      case '(':
+        while (tokens[cur_op].type != ')' && op < q)
+          cur_op++;
+        break;
+      case '+':
+      case '-':
+        op_type = tokens[cur_op].type;
+        op = cur_op;
+        break;
+      case '*':
+      case '/':
+        if (op_type == '+' || op_type == '-')
+          break;
+        else
+        {
+          op_type = tokens[cur_op].type;
+          op = cur_op;
+          break;
+        }
+      default:
+        break;
+      }
+      cur_op++;
+    }
+    if (op == 0)
+    {
+      printf("Error!\n");
+      return 0;
+    }
+    else
+    {
+      uint32_t val1 = eval(p, op - 1);
+      uint32_t val2 = eval(op + 1, q);
+      switch (op_type)
+      {
+      case '+':
+        return val1 + val2;
+      case '-':
+        return val1 - val2;
+      case '*':
+        return val1 * val2;
+      case '/':
+        return val1 / val2;
+      default:
+        assert(0);
+      }
+    }
+  }
+}
 
 word_t expr(char *e, bool *success)
 {
@@ -199,10 +266,10 @@ word_t expr(char *e, bool *success)
     *success = false;
     return 0;
   }
-  printf("%d\n", nr_token);
-  bool res = check_parenthess(0, nr_token - 1);
-  printf("%d\n", res);
+  // printf("%d\n", nr_token);
+  // bool res = check_parenthess(0, nr_token - 1);
+  // printf("%d\n", res);
   /* TODO: Insert codes to evaluate the expression. */
-
+  eval(0, nr_token - 1);
   return 0;
 }
