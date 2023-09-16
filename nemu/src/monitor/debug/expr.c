@@ -25,15 +25,15 @@ static struct rule
      * Pay attention to the precedence level of different rules.
      */
 
-    {" +", TK_NOTYPE}, // spaces
-    {"\\+", '+'},      // plus
-    {"==", TK_EQ},     // equal
-    {"-", '-'},        // minus
-    {"\\*", '*'},      // multiply
-    {"/", '/'},        // division
-    {"\\(", '('},      // left-half bracket
-    {"\\)", ')'},      // right-half bracket
-    {"\\d+", TK_NUM},  // nums
+    {" +", TK_NOTYPE},   // spaces
+    {"\\+", '+'},        // plus
+    {"==", TK_EQ},       // equal
+    {"-", '-'},          // minus
+    {"\\*", '*'},        // multiply
+    {"/", '/'},          // division
+    {"\\(", '('},        // left-half bracket
+    {"\\)", ')'},        // right-half bracket
+    {"\\d{1,}", TK_NUM}, // nums
 
 };
 
