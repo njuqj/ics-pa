@@ -204,7 +204,7 @@ static uint32_t eval(int p, int q)
     }
     int op = 0;
     int op_type = 0;
-    int cur_op = p + 1;
+    int cur_op = p;
     while (cur_op < q)
     {
       switch (tokens[cur_op].type)
