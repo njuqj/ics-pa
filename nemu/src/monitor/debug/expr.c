@@ -182,7 +182,7 @@ static uint32_t eval(int p, int q)
     {
       uint32_t res = 0;
       printf("%s\n", tokens[p].str);
-      sscanf("%u", tokens[p].str, res);
+      sscanf(tokens[p].str, "%u", &res);
       return res;
     }
     else
