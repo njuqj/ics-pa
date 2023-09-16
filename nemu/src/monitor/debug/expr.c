@@ -114,7 +114,7 @@ static bool make_token(char *e)
           tokens[nr_token].type = TK_NUM;
           // printf("%.*s\n", substr_len, substr_start);
           strncpy(tokens[nr_token].str, substr_start, substr_len);
-          printf("%s\n", tokens[nr_token].str);
+          // printf("%s\n", tokens[nr_token].str);
           nr_token++;
           break;
         default:
@@ -130,6 +130,14 @@ static bool make_token(char *e)
       printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
       return false;
     }
+  }
+
+  for (int j = 0; j < nr_token; j++)
+  {
+    printf("%d ", tokens[j].type);
+    if (strlen(tokens[j].str) > 0)
+      printf("%s", tokens[j].str);
+    printf("\n");
   }
 
   return true;
