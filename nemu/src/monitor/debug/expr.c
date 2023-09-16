@@ -112,8 +112,10 @@ static bool make_token(char *e)
           break;
         case TK_NUM:
           tokens[nr_token].type = TK_NUM;
-          printf("%.*s\n", substr_len, substr_start);
-          // strcpy(tokens[nr_token].type, substr_start);
+          // printf("%.*s\n", substr_len, substr_start);
+          strncpy(tokens[nr_token].str, substr_start, substr_len);
+          printf("%s\n", tokens[nr_token].str);
+          nr_token++;
           break;
         default:
           // TODO();
