@@ -270,6 +270,6 @@ word_t expr(char *e, bool *success)
   // bool res = check_parenthess(0, nr_token - 1);
   // printf("%d\n", res);
   /* TODO: Insert codes to evaluate the expression. */
-  eval(0, nr_token - 1);
+  printf("%u", eval(0, nr_token - 1));
   return 0;
 }
