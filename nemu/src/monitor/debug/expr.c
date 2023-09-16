@@ -123,6 +123,7 @@ static bool make_token(char *e)
 
         break;
       }
+      printf("%d\n", nr_token);
     }
 
     if (i == NR_REGEX)
