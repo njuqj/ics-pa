@@ -9,6 +9,7 @@ enum
 {
   TK_NOTYPE = 256,
   TK_EQ,
+  TK_NUM,
 
   /* TODO: Add more token types */
 
@@ -31,7 +32,8 @@ static struct rule
     {"\\*", '*'},      // multiply
     {"/", '/'},        // division
     {"\\(", '('},      // left-half bracket
-    {"\\)", ')'}       // right-half bracket
+    {"\\)", ')'},      // right-half bracket
+    {"\\d+", TK_NUM}   // nums
 
 };
 
