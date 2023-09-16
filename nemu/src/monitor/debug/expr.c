@@ -181,7 +181,7 @@ static uint32_t eval(int p, int q)
     if (tokens[p].type == TK_NUM)
     {
       uint32_t res = 0;
-      printf("%s\n", tokens[p].str);
+      // printf("%s\n", tokens[p].str);
       sscanf(tokens[p].str, "%u", &res);
       return res;
     }
@@ -272,6 +272,6 @@ word_t expr(char *e, bool *success)
   // bool res = check_parenthess(0, nr_token - 1);
   // printf("%d\n", res);
   /* TODO: Insert codes to evaluate the expression. */
-  printf("%u", eval(0, nr_token - 1));
+  printf("%u\n", eval(0, nr_token - 1));
   return 0;
 }
