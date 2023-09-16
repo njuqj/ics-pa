@@ -143,6 +143,52 @@ static bool make_token(char *e)
   return true;
 }
 
+static bool check_parenthess(int p, int q)
+{
+  if (tokens[p].type != '(' || tokens[q].type != ')')
+    return false;
+  else
+  {
+    int count = 1;
+    p++;
+    while (count > 0 && p < q)
+    {
+      if (tokens[p].type == '(')
+        count++;
+      else if (tokens[p].type == ')')
+        count--;
+      p++;
+    }
+    if (count == 0 && p == q)
+      return true;
+    else
+      return false;
+  }
+}
+
+/*static word_t eval(int p, int q)
+{
+  if (p > q)
+  {
+    printf("error\n");
+    return 0;
+  }
+  else if (p == q)
+  {
+    if (tokens[p].type == TK_NUM)
+    {
+      word_t res = 0;
+      sscanf("%u", tokens[p].str, res);
+      return res;
+    }
+    else
+    {
+      printf("Error!\n");
+      return 0;
+    }
+  }
+}*/
+
 word_t expr(char *e, bool *success)
 {
   printf("%s\n", e);
@@ -151,7 +197,8 @@ word_t expr(char *e, bool *success)
     *success = false;
     return 0;
   }
-
+  bool res = check_parenthess(0, nr_token);
+  printf("%d", res);
   /* TODO: Insert codes to evaluate the expression. */
 
   return 0;
