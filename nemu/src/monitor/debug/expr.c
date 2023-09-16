@@ -161,7 +161,7 @@ static bool check_parenthess(int p, int q)
         count--;
       p++;
     }
-    if (count == 0 && p == q)
+    if (count == 1 && p == q)
       return true;
     else
       return false;
