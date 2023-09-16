@@ -252,6 +252,11 @@ static uint32_t eval(int p, int q)
       case '*':
         return val1 * val2;
       case '/':
+        if (val2 == 0)
+        {
+          printf("0 cannot be used as a divisor!\n");
+          return 0;
+        }
         return val1 / val2;
       default:
         assert(0);
