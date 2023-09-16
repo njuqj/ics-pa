@@ -181,6 +181,7 @@ static uint32_t eval(int p, int q)
     if (tokens[p].type == TK_NUM)
     {
       uint32_t res = 0;
+      printf("%s\n", tokens[p].str);
       sscanf("%u", tokens[p].str, res);
       return res;
     }
