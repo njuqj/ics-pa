@@ -210,8 +210,15 @@ static uint32_t eval(int p, int q)
       switch (tokens[cur_op].type)
       {
       case '(':
-        while (tokens[cur_op].type != ')' && op < q)
+        int count = 1;
+        while (count > 0 && cur_op < q)
+        {
           cur_op++;
+          if (tokens[cur_op].type == '(')
+            count++;
+          else if (tokens[cur_op].type == ')')
+            count--;
+        }
         break;
       case '+':
       case '-':
