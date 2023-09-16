@@ -132,13 +132,13 @@ static bool make_token(char *e)
     }
   }
 
-  for (int j = 0; j < nr_token; j++)
+  /*for (int j = 0; j < nr_token; j++)
   {
     printf("%d ", tokens[j].type);
     if (strlen(tokens[j].str) > 0)
       printf("%s", tokens[j].str);
     printf("\n");
-  }
+  }*/
 
   return true;
 }
