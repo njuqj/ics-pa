@@ -106,6 +106,8 @@ static bool make_token(char *e)
         case '-':
         case '*':
         case '/':
+        case '(':
+        case ')':
         case TK_EQ:
           tokens[nr_token].type = rules[i].token_type;
           nr_token++;
@@ -123,7 +125,6 @@ static bool make_token(char *e)
 
         break;
       }
-      printf("%d\n", nr_token);
     }
 
     if (i == NR_REGEX)
