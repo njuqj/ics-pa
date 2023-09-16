@@ -197,8 +197,9 @@ word_t expr(char *e, bool *success)
     *success = false;
     return 0;
   }
+  printf("%d\n", nr_token);
   bool res = check_parenthess(0, nr_token);
-  printf("%d", res);
+  printf("%d\n", res);
   /* TODO: Insert codes to evaluate the expression. */
 
   return 0;
