@@ -200,7 +200,7 @@ word_t expr(char *e, bool *success)
     return 0;
   }
   printf("%d\n", nr_token);
-  bool res = check_parenthess(0, nr_token);
+  bool res = check_parenthess(0, nr_token - 1);
   printf("%d\n", res);
   /* TODO: Insert codes to evaluate the expression. */
 
