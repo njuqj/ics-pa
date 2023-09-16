@@ -235,7 +235,7 @@ static uint32_t eval(int p, int q)
     }
     if (op == 0)
     {
-      printf("Error!\n");
+      printf("Error! for no op\n");
       return 0;
     }
     else
