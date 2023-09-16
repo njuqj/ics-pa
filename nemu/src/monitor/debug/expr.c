@@ -187,7 +187,7 @@ static uint32_t eval(int p, int q)
     }
     else
     {
-      printf("Error!\n");
+      printf("Error! for no TK_NUM\n");
       return 0;
     }
   }
@@ -199,7 +199,7 @@ static uint32_t eval(int p, int q)
   {
     if (q == p + 1)
     {
-      printf("Error!\n");
+      printf("Error! for only two TKs\n");
       return 0;
     }
     int op = 0;
