@@ -100,6 +100,21 @@ static bool make_token(char *e)
 
         switch (rules[i].token_type)
         {
+        case TK_NOTYPE:
+          break;
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+        case TK_EQ:
+          tokens[nr_token].type = rules[i].token_type;
+          nr_token++;
+          break;
+        case TK_NUM:
+          tokens[nr_token].type = TK_NUM;
+          printf("%s\n", substr_start);
+          // strcpy(tokens[nr_token].type, substr_start);
+          break;
         default:
           // TODO();
         }
