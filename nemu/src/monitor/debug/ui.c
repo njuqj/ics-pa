@@ -50,6 +50,8 @@ static int cmd_info(char *args);
 
 static int cmd_x(char *args);
 
+static int cmd_p(char *args);
+
 static struct
 {
   char *name;
@@ -61,7 +63,8 @@ static struct
     {"q", "Exit NEMU", cmd_q},
     {"si", "Let the program step through N instructions and then pause execution, when N is not given, the default is 1 ", cmd_si},
     {"info", "info r: Print the register status\n       info w: Print the watchpoint information", cmd_info},
-    {"x", "Scan memory", cmd_x}
+    {"x", "Scan memory", cmd_x},
+    {"p", "expression evaluation", cmd_p}
 
     /* TODO: Add more commands */
 
@@ -159,6 +162,13 @@ static int cmd_x(char *args)
     }
   }
   printf("\n");
+  return 0;
+}
+
+static int cmd_p(char *args)
+{
+  bool success = true;
+  expr(args, &success);
   return 0;
 }
 
