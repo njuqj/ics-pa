@@ -178,6 +178,7 @@ static uint32_t eval(int p, int q)
   }
   else if (p == q)
   {
+    printf("case num\n");
     if (tokens[p].type == TK_NUM)
     {
       uint32_t res = 0;
@@ -197,6 +198,7 @@ static uint32_t eval(int p, int q)
     return eval(p + 1, q - 1);
   }
   else
+    printf("case normal\n");
   {
     if (q == p + 1)
     {
