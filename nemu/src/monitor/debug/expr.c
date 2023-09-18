@@ -67,7 +67,7 @@ typedef struct token
   char str[32];
 } Token;
 
-static Token tokens[64] __attribute__((used)) = {};
+static Token tokens[32] __attribute__((used)) = {};
 static int nr_token __attribute__((used)) = 0;
 
 static bool make_token(char *e)
@@ -81,6 +81,7 @@ static bool make_token(char *e)
   while (e[position] != '\0')
   {
     /* Try all rules one by one. */
+    printf("%ld\n", NR_REGEX);
     for (i = 0; i < NR_REGEX; i++)
     {
       if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0)
