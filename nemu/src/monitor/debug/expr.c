@@ -198,8 +198,8 @@ static uint32_t eval(int p, int q)
     return eval(p + 1, q - 1);
   }
   else
-    printf("case normal\n");
   {
+    printf("case normal\n");
     if (q == p + 1)
     {
       printf("Error! for only two TKs\n");
