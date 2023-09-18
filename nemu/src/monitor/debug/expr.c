@@ -238,7 +238,8 @@ static uint32_t eval(int p, int q)
       default:
         break;
       }
-      cur_op++;
+      if (cur_op < q)
+        cur_op++;
     }
     if (op == 0)
     {
