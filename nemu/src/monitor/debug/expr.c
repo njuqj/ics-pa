@@ -169,7 +169,7 @@ static bool check_parenthess(int p, int q)
   }
 }
 
-uint32_t eval(int p, int q)
+static uint32_t eval(int p, int q)
 {
   if (p > q)
   {
