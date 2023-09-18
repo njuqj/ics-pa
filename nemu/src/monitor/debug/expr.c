@@ -193,6 +193,7 @@ static uint32_t eval(int p, int q)
   }
   else if (check_parenthess(p, q) == true)
   {
+    printf("()!\n");
     return eval(p + 1, q - 1);
   }
   else
