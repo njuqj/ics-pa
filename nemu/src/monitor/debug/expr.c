@@ -288,6 +288,6 @@ word_t expr(char *e, bool *success)
   // printf("%d\n", res);
   /* TODO: Insert codes to evaluate the expression. */
   printf("%u\n", eval(0, nr_token - 1));
-  // memset(tokens, 0, sizeof(tokens));
+  //  memset(tokens, 0, sizeof(tokens));
   return 0;
 }
