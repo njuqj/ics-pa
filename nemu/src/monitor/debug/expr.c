@@ -178,7 +178,7 @@ static uint32_t eval(int p, int q)
   }
   else if (p == q)
   {
-    printf("case num\n");
+    // printf("case num\n");
     if (tokens[p].type == TK_NUM)
     {
       uint32_t res = 0;
@@ -194,12 +194,12 @@ static uint32_t eval(int p, int q)
   }
   else if (check_parenthess(p, q) == true)
   {
-    printf("%d()%d!\n", p, q);
+    // printf("%d()%d!\n", p, q);
     return eval(p + 1, q - 1);
   }
   else
   {
-    printf("case normal\n");
+    // printf("case normal\n");
     if (q == p + 1)
     {
       printf("Error! for only two TKs\n");
