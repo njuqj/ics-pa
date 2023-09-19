@@ -67,7 +67,7 @@ typedef struct token
   char str[32];
 } Token;
 
-static Token tokens[31] __attribute__((used)) = {};
+static Token tokens[32] __attribute__((used)) = {};
 static int nr_token __attribute__((used)) = 0;
 
 static bool make_token(char *e)
@@ -77,6 +77,7 @@ static bool make_token(char *e)
   regmatch_t pmatch;
 
   nr_token = 0;
+  bool flag = false;
 
   while (e[position] != '\0')
   {
@@ -104,6 +105,11 @@ static bool make_token(char *e)
           break;
         case '+':
         case '-':
+          if (nr_token > 0 && tokens[nr_token - 1].type != TK_NUM)
+          {
+            flag = true;
+            break;
+          }
         case '*':
         case '/':
         case '(':
@@ -115,7 +121,18 @@ static bool make_token(char *e)
         case TK_NUM:
           tokens[nr_token].type = TK_NUM;
           // printf("%.*s\n", substr_len, substr_start);
-          strncpy(tokens[nr_token].str, substr_start, substr_len);
+          if (flag == false)
+            strncpy(tokens[nr_token].str, substr_start, substr_len);
+          else
+          {
+            char num[50];
+            uint32_t rnum = 0;
+            strncpy(num, substr_start, substr_len);
+            sscanf(num, "%u", &rnum);
+            rnum = -rnum;
+            sprintf(tokens[nr_token].str, "%u", rnum);
+            flag = false;
+          }
           // printf("%s\n", tokens[nr_token].str);
           nr_token++;
           break;
@@ -134,8 +151,11 @@ static bool make_token(char *e)
       return false;
     }
   }
-  printf("%d %d %d\n", nr_token, ')', tokens[nr_token - 1].type);
-  //  printf("%d %d/n", nr_token - 1, tokens[nr_token - 1].type);
+  if (nr_token > 32)
+    return false;
+
+  // printf("%d %d %d\n", nr_token, ')', tokens[nr_token - 1].type);
+  //   printf("%d %d/n", nr_token - 1, tokens[nr_token - 1].type);
 
   /*for (int j = 0; j < nr_token; j++)
   {
