@@ -130,8 +130,10 @@ static bool make_token(char *e)
             strncpy(num, substr_start, substr_len);
             printf("%s\n", num);
             sscanf(num, "%u", &rnum);
-            printf("%u", rnum);
+            printf("%u\n", rnum);
             rnum = -rnum;
+            printf("%u\n", rnum);
+
             sprintf(tokens[nr_token].str, "%u", rnum);
             flag = false;
           }
