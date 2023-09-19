@@ -133,7 +133,7 @@ static bool make_token(char *e)
             printf("%s\n", num);
             rnum = -rnum;
             sprintf(tokens[nr_token].str, "%u", rnum);
-            printf("%u", rnum);
+            printf("%u\n", rnum);
             flag = false;
           }
           nr_token++;
