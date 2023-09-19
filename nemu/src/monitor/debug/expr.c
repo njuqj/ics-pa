@@ -122,7 +122,18 @@ static bool make_token(char *e)
         case TK_NUM:
           tokens[nr_token].type = TK_NUM;
           // printf("%.*s\n", substr_len, substr_start);
-          strncpy(tokens[nr_token].str, substr_start, substr_len);
+          if (!flag)
+            strncpy(tokens[nr_token].str, substr_start, substr_len);
+          else
+          {
+            char num[50];
+            uint32_t rnum = 0;
+            strncpy(num, substr_start, substr_len);
+            sscanf(num, "%u", &rnum);
+            rnum = -rnum;
+            sprintf(tokens[nr_token].str, "%u", rnum);
+            flag = false;
+          }
           nr_token++;
           break;
         default:
