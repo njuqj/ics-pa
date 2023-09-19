@@ -126,7 +126,6 @@ static bool make_token(char *e)
 
         break;
       }
-      assert(nr_token < 32);
     }
 
     if (i == NR_REGEX)
@@ -136,6 +135,7 @@ static bool make_token(char *e)
     }
   }
   // printf("%d\n", nr_token);
+  printf("%d %d/n", nr_token - 1, tokens[nr_token - 1].type);
 
   /*for (int j = 0; j < nr_token; j++)
   {
