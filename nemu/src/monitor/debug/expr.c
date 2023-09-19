@@ -127,7 +127,6 @@ static bool make_token(char *e)
           else
           {
             char num[50];
-            memset(num, 0, sizeof(num));
             uint32_t rnum = 0;
             strncpy(num, substr_start, substr_len);
             sscanf(num, "%u", &rnum);
