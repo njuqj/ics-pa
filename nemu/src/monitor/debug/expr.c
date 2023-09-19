@@ -77,7 +77,7 @@ static bool make_token(char *e)
   regmatch_t pmatch;
 
   nr_token = 0;
-  // bool flag = false;
+  bool flag = false;
 
   while (e[position] != '\0')
   {
@@ -105,6 +105,12 @@ static bool make_token(char *e)
           break;
         case '+':
         case '-':
+          if (nr_token == 0 || tokens[nr_token - 1].type != TK_NUM)
+          {
+            if (!flag)
+              flag = true;
+            break;
+          }
         case '*':
         case '/':
         case '(':
@@ -116,23 +122,7 @@ static bool make_token(char *e)
         case TK_NUM:
           tokens[nr_token].type = TK_NUM;
           // printf("%.*s\n", substr_len, substr_start);
-          // if (flag == false)
           strncpy(tokens[nr_token].str, substr_start, substr_len);
-          /*else
-          {
-            char num[50];
-            uint32_t rnum = 0;
-            strncpy(num, substr_start, substr_len);
-            printf("%s\n", num);
-            sscanf(num, "%u", &rnum);
-            printf("%u\n", rnum);
-            rnum = -rnum;
-            printf("%u\n", rnum);
-
-            sprintf(tokens[nr_token].str, "%u", rnum);
-            flag = false;
-          }*/
-          // printf("%s\n", tokens[nr_token].str);
           nr_token++;
           break;
         default:
