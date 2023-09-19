@@ -67,7 +67,7 @@ typedef struct token
   char str[32];
 } Token;
 
-static Token tokens[35] __attribute__((used)) = {};
+static Token tokens[32] __attribute__((used)) = {};
 static int nr_token __attribute__((used)) = 0;
 
 static bool make_token(char *e)
@@ -126,6 +126,7 @@ static bool make_token(char *e)
 
         break;
       }
+      assert(nr_token < 32);
     }
 
     if (i == NR_REGEX)
@@ -134,7 +135,7 @@ static bool make_token(char *e)
       return false;
     }
   }
-  printf("%d\n", nr_token);
+  // printf("%d\n", nr_token);
 
   /*for (int j = 0; j < nr_token; j++)
   {
