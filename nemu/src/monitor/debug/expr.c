@@ -123,16 +123,18 @@ static bool make_token(char *e)
           // printf("%.*s\n", substr_len, substr_start);
           if (flag == false)
             strncpy(tokens[nr_token].str, substr_start, substr_len);
-          /*else
+          else
           {
             char num[50];
             uint32_t rnum = 0;
             strncpy(num, substr_start, substr_len);
+            printf("%s\n", num);
             sscanf(num, "%u", &rnum);
+            printf("%u", rnum);
             rnum = -rnum;
             sprintf(tokens[nr_token].str, "%u", rnum);
             flag = false;
-          }*/
+          }
           // printf("%s\n", tokens[nr_token].str);
           nr_token++;
           break;
