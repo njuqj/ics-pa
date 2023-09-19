@@ -105,11 +105,6 @@ static bool make_token(char *e)
           break;
         case '+':
         case '-':
-          if (nr_token == 0 || tokens[nr_token - 1].type != TK_NUM)
-          {
-            // flag = true;
-            break;
-          }
         case '*':
         case '/':
         case '(':
