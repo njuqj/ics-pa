@@ -79,7 +79,7 @@ static bool make_token(char *e)
   nr_token = 0;
   bool flag = false;
 
-  while (e[position] != '\0')
+  while (e[position] != '\0' && nr_token < 32)
   {
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i++)
@@ -151,10 +151,12 @@ static bool make_token(char *e)
       return false;
     }
   }
-  /*if (nr_token > 32){
-
+  if (nr_token == 32)
+  {
+    printf("Too long\n");
+    memset(tokens, 0, sizeof(tokens));
     return false;
-  }*/
+  }
   // printf("%d %d %d\n", nr_token, ')', tokens[nr_token - 1].type);
   //   printf("%d %d/n", nr_token - 1, tokens[nr_token - 1].type);
 
@@ -312,6 +314,5 @@ word_t expr(char *e, bool *success)
   /* TODO: Insert codes to evaluate the expression. */
   printf("%u\n", eval(0, nr_token - 1));
   memset(tokens, 0, sizeof(tokens));
-  nr_token = 0;
   return 0;
 }
