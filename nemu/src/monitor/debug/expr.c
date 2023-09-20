@@ -151,9 +151,10 @@ static bool make_token(char *e)
       return false;
     }
   }
-  if (nr_token > 32)
-    return false;
+  /*if (nr_token > 32){
 
+    return false;
+  }*/
   // printf("%d %d %d\n", nr_token, ')', tokens[nr_token - 1].type);
   //   printf("%d %d/n", nr_token - 1, tokens[nr_token - 1].type);
 
