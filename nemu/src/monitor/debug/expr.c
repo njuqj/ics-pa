@@ -130,10 +130,8 @@ static bool make_token(char *e)
             uint32_t rnum = 0;
             strncpy(num, substr_start, substr_len);
             sscanf(num, "%u", &rnum);
-            printf("%s\n", num);
             rnum = -rnum;
             sprintf(tokens[nr_token].str, "%u", rnum);
-            printf("%u\n", rnum);
             flag = false;
           }
           nr_token++;
