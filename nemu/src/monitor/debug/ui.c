@@ -190,17 +190,21 @@ static int cmd_w(char *args)
     WP *wp = new_wp();
     wp->val = val;
     strcpy(wp->expr, args);
-    printf("Watchpoint added successfully\n");
+    printf("Watchpoint added successfully!\n");
   }
   else
   {
-    printf("Failed to add watchpoint\n");
+    printf("Failed to add watchpoint!\n");
   }
   return 0;
 }
 
 static int cmd_d(char *args)
 {
+  int NO = 0;
+  if (!sscanf(args, "%d", &NO))
+    printf("input error!\n");
+  free_wp(NO);
   return 0;
 }
 
