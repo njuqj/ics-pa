@@ -242,6 +242,9 @@ static uint32_t eval(int p, int q)
         }
         break;
       case DEREF:
+        uint32_t *p;
+        sscanf(tokens[q].str, "%p", &p);
+        return *p;
         break;
       case NEG:
         uint32_t res = 0;
