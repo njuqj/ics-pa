@@ -384,7 +384,8 @@ word_t expr(char *e, bool *success)
       tokens[i].type = NEG;
     }
   }
-  printf("%u\n", eval(0, nr_token - 1));
+  uint32_t res = eval(0, nr_token - 1);
+  printf("%u\n", res);
   memset(tokens, 0, sizeof(tokens));
-  return 0;
+  return res;
 }
