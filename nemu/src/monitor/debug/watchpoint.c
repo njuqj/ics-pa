@@ -22,7 +22,32 @@ void init_wp_pool()
 
 /* TODO: Implement the functionality of watchpoint */
 
-WP *new_wp(uint32_t val, char *args)
+WP *new_wp()
 {
-  return NULL;
+  if (free_ == NULL)
+  {
+    printf("There are too many watchpoints!\n");
+    return NULL;
+  }
+  WP *p = free_;
+  free_ = free_->next;
+  if (head == NULL)
+  {
+    head = p;
+    p->next = NULL;
+  }
+  else if (head->NO > p->NO)
+  {
+    p->next = head;
+    head = p;
+  }
+  else
+  {
+    WP *wp = head;
+    while (wp->next != NULL && wp->next->NO < p->NO)
+      wp = wp->next;
+    p->next = wp->next;
+    wp->next = p;
+  }
+  return p;
 }

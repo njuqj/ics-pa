@@ -13,5 +13,5 @@ typedef struct watchpoint
   /* TODO: Add more members if necessary */
 
 } WP;
-WP *new_wp(uint32_t val, char *args);
+WP *new_wp();
 #endif
