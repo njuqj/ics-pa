@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdint.h>
 
 void init_monitor(int, char *[]);
 void engine_start();
@@ -13,11 +14,14 @@ int main(int argc, char *argv[])
     printf("无法打开文件。\n");
   else
   {
-    char str[60000];
+    char str[60030];
+    char e[60000];
+    uint32_t res = 0;
     while (!feof(fp))
     {
-      fgets(str, 60000, fp);
-      printf("%s\n", str);
+      fgets(str, 60030, fp);
+      sscanf(str, "%u %s", &res, e);
+      printf("%u %s", res, e);
     }
     fclose(fp);
   }
