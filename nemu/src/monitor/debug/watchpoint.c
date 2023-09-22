@@ -49,7 +49,6 @@ WP *new_wp()
     p->next = wp->next;
     wp->next = p;
   }
-  printf("The first free w is %d , head w is %d\n", free_->NO, head->NO);
   return p;
 }
 
