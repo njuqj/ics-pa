@@ -13,7 +13,12 @@ int main(int argc, char *argv[])
     printf("无法打开文件。\n");
   else
   {
-    printf("打开！\n");
+    char str[60000];
+    while (!feof(fp))
+    {
+      fgets(str, 60000, fp);
+      printf("%s\n", str);
+    }
     fclose(fp);
   }
 
