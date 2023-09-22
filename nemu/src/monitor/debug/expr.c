@@ -220,7 +220,7 @@ static uint32_t eval(int p, int q)
     // printf("case normal\n");
     if (q == p + 1)
     {
-      switch (tokens[q].type)
+      switch (tokens[p].type)
       {
       case '$':
         break;
