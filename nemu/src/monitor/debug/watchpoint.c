@@ -119,7 +119,9 @@ void print_wp()
   printf("free:\n");
   while (p != NULL)
   {
-    printf("%d", free_->NO);
+    printf("%d ", free_->NO);
     p = p->next;
   }
+  printf("\n");
+  return;
 }
