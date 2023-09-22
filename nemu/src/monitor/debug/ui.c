@@ -184,11 +184,18 @@ static int cmd_w(char *args)
 {
   printf("The value of the current expression is: ");
   bool success = true;
-  WP *wp = new_wp();
-  wp->val = expr(args, &success);
-  if (!success)
-    printf("Error for expr\n");
-  strcpy(wp->expr, args);
+  uint32_t val = expr(args, &success);
+  if (success)
+  {
+    WP *wp = new_wp();
+    wp->val = val;
+    strcpy(wp->expr, args);
+    printf("Watchpoint added successfully\n");
+  }
+  else
+  {
+    printf("Failed to add watchpoint\n");
+  }
   return 0;
 }
 
