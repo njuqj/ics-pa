@@ -204,11 +204,6 @@ static int cmd_d(char *args)
   int NO = 0;
   if (!sscanf(args, "%d", &NO))
     printf("input error!\n");
-  if (NO > 31 || NO < 0)
-  {
-    printf("no such watchpoint!\n");
-    return 0;
-  }
   free_wp(NO);
   return 0;
 }

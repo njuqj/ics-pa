@@ -76,6 +76,7 @@ void free_wp(int NO)
         p = wp->next;
         wp->next = wp->next->next;
       }
+      wp = wp->next;
     }
   }
   if (p == NULL)
