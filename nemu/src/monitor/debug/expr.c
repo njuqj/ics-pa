@@ -36,10 +36,10 @@ static struct rule
     {"/", '/'},         // division
     {"\\(", '('},       // left-half bracket
     {"\\)", ')'},       // right-half bracket
+    {"0x", 'x'},        // hexadecimal
     {"[0-9]+", TK_NUM}, // nums
     {"[a-z]+", TK_STR}, // string
     {"\\$", '$'},       // reg
-    {"0x", 'x'},        // hexadecimal
 
 };
 
