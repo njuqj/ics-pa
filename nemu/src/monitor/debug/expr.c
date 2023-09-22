@@ -10,6 +10,7 @@ enum
   TK_NOTYPE = 256,
   TK_EQ,
   TK_NUM,
+  TK_STR
 
   /* TODO: Add more token types */
 
@@ -29,11 +30,13 @@ static struct rule
     {"\\+", '+'},       // plus
     {"==", TK_EQ},      // equal
     {"-", '-'},         // minus
-    {"\\*", '*'},       // multiply
+    {"\\*", '*'},       // multiply or dereferance
     {"/", '/'},         // division
     {"\\(", '('},       // left-half bracket
     {"\\)", ')'},       // right-half bracket
     {"[0-9]+", TK_NUM}, // nums
+    {"[a-z]+", TK_STR}, // string
+    {"\\$", '$'},       // reg
 
 };
 
@@ -115,6 +118,7 @@ static bool make_token(char *e)
         case '/':
         case '(':
         case ')':
+        case '$':
         case TK_EQ:
           tokens[nr_token].type = rules[i].token_type;
           nr_token++;
@@ -136,6 +140,9 @@ static bool make_token(char *e)
           }
           nr_token++;
           break;
+        case TK_STR:
+          tokens[nr_token].type = TK_STR;
+          strncpy(tokens[nr_token].str, substr_start, substr_len);
         default:
           assert(0);
           // TODO();
