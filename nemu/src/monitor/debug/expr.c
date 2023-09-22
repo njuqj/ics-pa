@@ -12,7 +12,9 @@ enum
   TK_NUM,
   TK_STR,
   DEREF,
-  NEG
+  NEG,
+  TK_NEQ,
+  TK_AND
 
   /* TODO: Add more token types */
 
@@ -40,6 +42,8 @@ static struct rule
     {"[0-9]+", TK_NUM}, // nums
     {"[a-z]+", TK_STR}, // string
     {"\\$", '$'},       // reg
+    {"!=", TK_NEQ},     // not equal
+    {"&&", TK_AND},     // and
 
 };
 
@@ -276,14 +280,14 @@ static uint32_t eval(int p, int q)
             count--;
         }
         break;
-      case '+':
-      case '-':
+      case TK_EQ:
+      case TK_NEQ:
         op_type = tokens[cur_op].type;
         op = cur_op;
         break;
-      case '*':
-      case '/':
-        if (op_type == '+' || op_type == '-')
+      case '+':
+      case '-':
+        if (op_type == TK_EQ || op_type == TK_NEQ)
           break;
         else
         {
@@ -291,6 +295,26 @@ static uint32_t eval(int p, int q)
           op = cur_op;
           break;
         }
+      case '*':
+      case '/':
+        if (op_type == '+' || op_type == '-' || op_type == TK_EQ || op_type == TK_NEQ)
+          break;
+        else
+        {
+          op_type = tokens[cur_op].type;
+          op = cur_op;
+          break;
+        }
+      case TK_AND:
+        if (op_type == '+' || op_type == '-' || op_type == TK_EQ || op_type == TK_NEQ || op_type == '*' || op_type == '/')
+          break;
+        else
+        {
+          op_type = tokens[cur_op].type;
+          op = cur_op;
+          break;
+        }
+
       default:
         break;
       }
