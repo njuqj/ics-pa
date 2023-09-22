@@ -345,6 +345,13 @@ static uint32_t eval(int p, int q)
           return 0;
         }
         return val1 / val2;
+      case TK_EQ:
+        return val1 == val2;
+      case TK_NEQ:
+        return val1 != val2;
+      case TK_AND:
+        return val1 && val2;
+
       default:
         assert(0);
       }
