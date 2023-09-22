@@ -205,6 +205,7 @@ static int cmd_d(char *args)
   if (!sscanf(args, "%d", &NO))
     printf("input error!\n");
   free_wp(NO);
+  print_wp();
   return 0;
 }
 

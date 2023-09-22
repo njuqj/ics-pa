@@ -105,3 +105,20 @@ void free_wp(int NO)
   }
   return;
 }
+
+void print_wp()
+{
+  WP *p = head;
+  printf("head:\n");
+  while (p != NULL)
+  {
+    printf("%d %d %s\n", p->NO, p->val, p->expr);
+    p = p->next;
+  }
+  p = free_;
+  while (p != NULL)
+  {
+    printf("free: %d", free_->NO);
+    p = p->next;
+  }
+}
