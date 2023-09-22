@@ -63,7 +63,7 @@ void free_wp(int NO)
   if (head->NO == NO)
   {
     p = head;
-    printf("%d %d %s\n", p->NO, p->val, p->expr);
+    // printf("%d %d %s\n", p->NO, p->val, p->expr);
     head = head->next;
   }
   else
