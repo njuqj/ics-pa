@@ -229,7 +229,8 @@ static uint32_t eval(int p, int q)
       case NEG:
         uint32_t res = 0;
         sscanf(tokens[p].str, "%u", &res);
-        return -res;
+        res = -res;
+        return res;
       default:
         break;
       }
