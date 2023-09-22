@@ -121,6 +121,8 @@ static bool make_token(char *e)
         case '$':
         case 'x':
         case TK_EQ:
+        case TK_NEQ:
+        case TK_AND:
           tokens[nr_token].type = rules[i].token_type;
           nr_token++;
           break;
