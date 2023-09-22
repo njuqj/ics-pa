@@ -223,11 +223,27 @@ static uint32_t eval(int p, int q)
       switch (tokens[p].type)
       {
       case '$':
+        if (tokens[q].type == TK_STR)
+        {
+          bool success = 1;
+          word_t res = isa_reg_str2val(tokens[q].str, &success);
+          if (success)
+            return res;
+          else
+          {
+            printf("no such reg\n");
+            return 0;
+          }
+        }
+        else
+        {
+          printf("error!\n");
+          return 0;
+        }
         break;
       case DEREF:
         break;
       case NEG:
-        printf("negative!\n");
         uint32_t res = 0;
         sscanf(tokens[q].str, "%u", &res);
         return -res;
