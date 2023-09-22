@@ -168,13 +168,13 @@ static bool make_token(char *e)
   // printf("%d %d %d\n", nr_token, ')', tokens[nr_token - 1].type);
   //   printf("%d %d/n", nr_token - 1, tokens[nr_token - 1].type);
 
-  /*for (int j = 0; j < nr_token; j++)
+  for (int j = 0; j < nr_token; j++)
   {
     printf("%d ", tokens[j].type);
     if (strlen(tokens[j].str) > 0)
       printf("%s", tokens[j].str);
     printf("\n");
-  }*/
+  }
 
   return true;
 }
