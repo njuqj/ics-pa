@@ -1,6 +1,5 @@
 #include "watchpoint.h"
 #include "expr.h"
-#include <stdlib.h>
 
 #define NR_WP 32
 
@@ -60,27 +59,44 @@ void free_wp(int NO)
     printf("There is no watchpoint!\n");
     return;
   }
+  WP *p = NULL;
   if (head->NO == NO)
   {
-    WP *p = head;
+    p = head;
     printf("%d %d %s\n", p->NO, p->val, p->expr);
     head = head->next;
-    free(p);
-    printf("Delete the watchpoint successfully!\n");
-    return;
   }
   WP *wp = head;
   while (wp->next != NULL)
   {
     if (wp->next->NO == NO)
     {
-      WP *p = wp->next;
+      p = wp->next;
       wp->next = wp->next->next;
-      free(p);
-      printf("Delete the watchpoint successfully!\n");
-      return;
     }
   }
-  printf("no such watchpoint!\n");
+  if (p == NULL)
+    printf("no such watchpoint!\n");
+  else
+  {
+    if (free_ == NULL)
+    {
+      free_ = p;
+      p->next = NULL;
+    }
+    else if (free_->NO > p->NO)
+    {
+      p->next = free_;
+      free_ = p;
+    }
+    else
+    {
+      WP *wp = free_;
+      while (wp->next != NULL && wp->next->NO < p->NO)
+        wp = wp->next;
+      p->next = wp->next;
+      wp->next = p;
+    }
+  }
   return;
 }
