@@ -180,7 +180,9 @@ static int cmd_p(char *args)
 
 static int cmd_w(char *args)
 {
-  uint32_t val = cmd_p(args);
+  printf("The value of the current expression is: ");
+  bool success = true;
+  uint32_t val = expr(args, &success);
   new_wp(val, args);
   return 0;
 }
