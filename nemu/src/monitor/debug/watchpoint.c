@@ -67,13 +67,16 @@ void free_wp(int NO)
     printf("%d %d %s\n", p->NO, p->val, p->expr);
     head = head->next;
   }
-  WP *wp = head;
-  while (wp->next != NULL)
+  else
   {
-    if (wp->next->NO == NO)
+    WP *wp = head;
+    while (wp->next != NULL)
     {
-      p = wp->next;
-      wp->next = wp->next->next;
+      if (wp->next->NO == NO)
+      {
+        p = wp->next;
+        wp->next = wp->next->next;
+      }
     }
   }
   if (p == NULL)
