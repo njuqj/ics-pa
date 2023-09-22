@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     {
       fgets(str, 60030, fp);
       sscanf(str, "%u %s", &res, e);
-      printf("%u %s", res, e);
+      printf("%u %s\n", res, e);
     }
     fclose(fp);
   }
