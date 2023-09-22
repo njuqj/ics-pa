@@ -220,8 +220,19 @@ static uint32_t eval(int p, int q)
     // printf("case normal\n");
     if (q == p + 1)
     {
-      if (tokens[p].type == '$')
-        return 0;
+      switch (tokens[q].type)
+      {
+      case '$':
+        break;
+      case DEREF:
+        break;
+      case NEG:
+        uint32_t res = 0;
+        sscanf(tokens[p].str, "%u", &res);
+        return -res;
+      default:
+        break;
+      }
     }
     int op = 0;
     int op_type = 0;
