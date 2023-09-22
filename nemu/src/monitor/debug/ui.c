@@ -52,6 +52,10 @@ static int cmd_x(char *args);
 
 static int cmd_p(char *args);
 
+static int cmd_w(char *args);
+
+static int cmd_d(char *args);
+
 static struct
 {
   char *name;
@@ -64,7 +68,9 @@ static struct
     {"si", "Let the program step through N instructions and then pause execution, when N is not given, the default is 1 ", cmd_si},
     {"info", "info r: Print the register status\n       info w: Print the watchpoint information", cmd_info},
     {"x", "Scan memory", cmd_x},
-    {"p", "expression evaluation", cmd_p}
+    {"p", "expression evaluation", cmd_p},
+    {"w", "Pauses program execution when the value of the expression EXPR changes", cmd_w},
+    {"d", "Delete the watchpoint", cmd_d}
 
     /* TODO: Add more commands */
 
@@ -169,6 +175,18 @@ static int cmd_p(char *args)
 {
   bool success = true;
   expr(args, &success);
+  return 0;
+}
+
+static int cmd_w(char *args)
+{
+  uint32_t val = cmd_p(args);
+  new_wp(val, args);
+  return 0;
+}
+
+static int cmd_d(char *args)
+{
   return 0;
 }
 
