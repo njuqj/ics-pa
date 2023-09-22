@@ -10,7 +10,9 @@ enum
   TK_NOTYPE = 256,
   TK_EQ,
   TK_NUM,
-  TK_STR
+  TK_STR,
+  DEREF,
+  NEG
 
   /* TODO: Add more token types */
 
@@ -29,7 +31,7 @@ static struct rule
     {" +", TK_NOTYPE},  // spaces
     {"\\+", '+'},       // plus
     {"==", TK_EQ},      // equal
-    {"-", '-'},         // minus
+    {"-", '-'},         // minus or negative
     {"\\*", '*'},       // multiply or dereferance
     {"/", '/'},         // division
     {"\\(", '('},       // left-half bracket
@@ -80,7 +82,6 @@ static bool make_token(char *e)
   regmatch_t pmatch;
 
   nr_token = 0;
-  bool flag = false;
 
   while (e[position] != '\0' && nr_token < 32)
   {
@@ -108,12 +109,6 @@ static bool make_token(char *e)
           break;
         case '+':
         case '-':
-          if (nr_token == 0 || tokens[nr_token - 1].type != TK_NUM)
-          {
-            if (!flag)
-              flag = true;
-            break;
-          }
         case '*':
         case '/':
         case '(':
@@ -126,18 +121,7 @@ static bool make_token(char *e)
         case TK_NUM:
           tokens[nr_token].type = TK_NUM;
           // printf("%.*s\n", substr_len, substr_start);
-          if (!flag)
-            strncpy(tokens[nr_token].str, substr_start, substr_len);
-          else
-          {
-            char num[50];
-            uint32_t rnum = 0;
-            strncpy(num, substr_start, substr_len);
-            sscanf(num, "%u", &rnum);
-            rnum = -rnum;
-            sprintf(tokens[nr_token].str, "%u", rnum);
-            flag = false;
-          }
+          strncpy(tokens[nr_token].str, substr_start, substr_len);
           nr_token++;
           break;
         case TK_STR:
@@ -236,8 +220,8 @@ static uint32_t eval(int p, int q)
     // printf("case normal\n");
     if (q == p + 1)
     {
-      printf("Error! for only two TKs\n");
-      return 0;
+      if (tokens[p].type == '$')
+        return 0;
     }
     int op = 0;
     int op_type = 0;
@@ -321,6 +305,17 @@ word_t expr(char *e, bool *success)
   // bool res = check_parenthess(0, nr_token - 1);
   // printf("%d\n", res);
   /* TODO: Insert codes to evaluate the expression. */
+  for (int i = 0; i < nr_token; i++)
+  {
+    if (tokens[i].type == '*' && (i == 0 || tokens[i - 1].type != TK_NUM))
+    {
+      tokens[i].type = DEREF;
+    }
+    if (tokens[i].type == '-' && (i == 0 || tokens[i - 1].type != TK_NUM))
+    {
+      tokens[i].type = NEG;
+    }
+  }
   printf("%u\n", eval(0, nr_token - 1));
   memset(tokens, 0, sizeof(tokens));
   return 0;
