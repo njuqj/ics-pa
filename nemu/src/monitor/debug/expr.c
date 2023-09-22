@@ -39,6 +39,7 @@ static struct rule
     {"[0-9]+", TK_NUM}, // nums
     {"[a-z]+", TK_STR}, // string
     {"\\$", '$'},       // reg
+    {"0x", 'x'},        // hexadecimal
 
 };
 
@@ -114,6 +115,7 @@ static bool make_token(char *e)
         case '(':
         case ')':
         case '$':
+        case 'x':
         case TK_EQ:
           tokens[nr_token].type = rules[i].token_type;
           nr_token++;
@@ -240,16 +242,18 @@ static uint32_t eval(int p, int q)
           printf("error!\n");
           return 0;
         }
-        break;
       case DEREF:
         uint32_t *p;
         sscanf(tokens[q].str, "%p", &p);
         return *p;
-        break;
       case NEG:
         uint32_t res = 0;
         sscanf(tokens[q].str, "%u", &res);
         return -res;
+      case 'x':
+        uint32_t r = 0;
+        sscanf(tokens[q].str, "%x", &r);
+        return r;
       default:
         break;
       }
