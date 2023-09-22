@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdint.h>
-#include <stdbool.h>
-
 void init_monitor(int, char *[]);
 void engine_start();
 int is_exit_status_bad();

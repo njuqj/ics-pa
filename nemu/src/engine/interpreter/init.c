@@ -1,7 +1,8 @@
 void ui_mainloop();
 void init_device();
 
-void engine_start() {
+void engine_start()
+{
   /* Initialize devices. */
   init_device();
 
