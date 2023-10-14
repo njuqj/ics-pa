@@ -187,7 +187,7 @@ static int cmd_w(char *args)
 {
   bool success = true;
   uint32_t val = expr(args, &success);
-  printf("The value of the current expression is: %d", val);
+  printf("The value of the current expression is: %d\n", val);
   if (success)
   {
     WP *wp = new_wp();

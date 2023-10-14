@@ -140,6 +140,7 @@ bool check_wp()
     {
       flag = true;
       printf("w%d changed!(%s)(%u->%u)\n", p->NO, p->expr, p->val, value);
+      p->val = value;
     }
     p = p->next;
   }
