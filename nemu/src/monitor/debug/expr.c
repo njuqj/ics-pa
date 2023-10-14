@@ -385,7 +385,7 @@ word_t expr(char *e, bool *success)
     }
   }
   uint32_t res = eval(0, nr_token - 1);
-  printf("%u\n", res);
+  // printf("%u\n", res);
   memset(tokens, 0, sizeof(tokens));
   return res;
 }
