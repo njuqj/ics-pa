@@ -57,6 +57,8 @@ word_t isa_reg_str2val(const char *s, bool *success)
       return cpu.gpr[i]._16;
     else if (strcmp(regsb[i], s) == 0)
       return cpu.gpr[i % 4]._8[i / 4];
+    else if (strcmp("pc", s) == 0)
+      return cpu.pc;
   }
   *success = 0;
 
