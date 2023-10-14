@@ -177,7 +177,7 @@ static int cmd_x(char *args)
 static int cmd_p(char *args)
 {
   bool success = true;
-  printf("%d", expr(args, &success));
+  printf("%d\n", expr(args, &success));
   if (!success)
     printf("Error for expr\n");
   return 0;
@@ -185,9 +185,9 @@ static int cmd_p(char *args)
 
 static int cmd_w(char *args)
 {
-  printf("The value of the current expression is: ");
   bool success = true;
   uint32_t val = expr(args, &success);
+  printf("The value of the current expression is: %d", val);
   if (success)
   {
     WP *wp = new_wp();

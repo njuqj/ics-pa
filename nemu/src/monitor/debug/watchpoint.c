@@ -132,14 +132,14 @@ bool check_wp()
   WP *p = head;
   bool success = true;
   bool flag = false;
-  int value = 0;
+  uint32_t value = 0;
   while (p != NULL)
   {
     value = expr(p->expr, &success);
     if (p->val != value)
     {
       flag = true;
-      printf("w%d changed!(%s)(%d->%d)\n", p->NO, p->expr, p->val, value);
+      printf("w%d changed!(%s)(%u->%u)\n", p->NO, p->expr, p->val, value);
     }
     p = p->next;
   }
