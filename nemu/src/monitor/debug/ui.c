@@ -56,6 +56,8 @@ static int cmd_w(char *args);
 
 static int cmd_d(char *args);
 
+static int cmd_wp(char *args);
+
 static struct
 {
   char *name;
@@ -70,7 +72,8 @@ static struct
     {"x", "Scan memory", cmd_x},
     {"p", "expression evaluation", cmd_p},
     {"w", "Pauses program execution when the value of the expression EXPR changes", cmd_w},
-    {"d", "Delete the watchpoint", cmd_d}
+    {"d", "Delete the watchpoint", cmd_d},
+    {"wp", "Check the watchpoints", cmd_wp}
 
     /* TODO: Add more commands */
 
@@ -206,6 +209,12 @@ static int cmd_d(char *args)
   if (!sscanf(args, "%d", &NO))
     printf("input error!\n");
   free_wp(NO);
+  // print_wp();
+  return 0;
+}
+
+static int cmd_wp(char *args)
+{
   print_wp();
   return 0;
 }
