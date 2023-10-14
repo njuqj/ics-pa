@@ -56,8 +56,6 @@ static int cmd_w(char *args);
 
 static int cmd_d(char *args);
 
-static int cmd_wp(char *args);
-
 static struct
 {
   char *name;
@@ -73,7 +71,6 @@ static struct
     {"p", "expression evaluation", cmd_p},
     {"w", "Pauses program execution when the value of the expression EXPR changes", cmd_w},
     {"d", "Delete the watchpoint", cmd_d},
-    {"wp", "Print the watchpoints", cmd_wp}
 
     /* TODO: Add more commands */
 
@@ -140,7 +137,7 @@ static int cmd_info(char *args)
     printf("EDI: 0x%08x\n", cpu.edi);
     break;
   case 'w':
-    printf("watchpoint\n"); // 待修改
+    print_wp();
     break;
 
   default:
@@ -210,12 +207,6 @@ static int cmd_d(char *args)
     printf("input error!\n");
   free_wp(NO);
   // print_wp();
-  return 0;
-}
-
-static int cmd_wp(char *args)
-{
-  print_wp();
   return 0;
 }
 
