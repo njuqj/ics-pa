@@ -127,7 +127,21 @@ void print_wp()
   return;
 }
 
-int check_wp()
+bool check_wp()
 {
-  return 0;
+  WP *p = head;
+  bool success = true;
+  bool flag = false;
+  int value = 0;
+  while (p != NULL)
+  {
+    value = expr(p->expr, &success);
+    if (p->val != value)
+    {
+      flag = true;
+      printf("w%d changed!(%s)(%d->%d)\n", p->NO, p->expr, p->val, value);
+    }
+    p = p->next;
+  }
+  return flag;
 }
