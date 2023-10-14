@@ -196,7 +196,7 @@ static int cmd_w(char *args)
   {
     printf("Failed to add watchpoint!\n");
   }
-  print_wp();
+  // print_wp();
   return 0;
 }
 
