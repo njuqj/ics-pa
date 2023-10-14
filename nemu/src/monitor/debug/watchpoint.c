@@ -126,3 +126,8 @@ void print_wp()
   printf("\n");
   return;
 }
+
+int check_wp()
+{
+  return 0;
+}
